@@ -8,19 +8,36 @@ interface BottomProps {
   url: string;
   size: string;
 }
+interface BottomDataProps {
+  title: string;
+  box: {
+    title: string;
+    subtitle: string;
+  };
+}
 interface BottomBigPicProps {
-    id: number;
-    width: string;
-    url: string;
-    size: string;
-  }
-  interface smallPicProps {
-    id: number;
-    width: string;
-    url: string;
-    size: string;
-  }
-export const Bottom = ({BottomBigPic, smallPic} :{BottomBigPic : BottomBigPicProps[], smallPic : smallPicProps[]}) => {
+  id: number;
+  width: string;
+  url: string;
+  size: string;
+}
+interface smallPicProps {
+  id: number;
+  width: string;
+  url: string;
+  size: string;
+}
+export const Bottom = ({
+  alternate,
+  BottomBigPic,
+  smallPic,
+  BottomData,
+}: {
+  alternate: string;
+  BottomBigPic: BottomBigPicProps[];
+  smallPic: smallPicProps[];
+  BottomData: BottomDataProps;
+}) => {
   const box = ({ width, url, size }: BottomProps) => {
     return (
       <>
@@ -31,21 +48,26 @@ export const Bottom = ({BottomBigPic, smallPic} :{BottomBigPic : BottomBigPicPro
 
   return (
     <>
-      <S.recentText>Recent Sold</S.recentText>
+      <S.recentText>{BottomData.title}</S.recentText>
       <div style={{ padding: "0.5rem" }}>
         <S.Rrow>
-            {BottomBigPic.map((i) => <S.RCol>{box({ width: i.width, url: i.url, size: i.size })}</S.RCol>)}
-          
+          {BottomBigPic.map((i) => (
+            <S.RCol>{box({ width: i.width, url: i.url, size: i.size })}</S.RCol>
+          ))}
+
           <S.RCol>
             <S.Frow>
-                {smallPic.map((i) => <Col className="d-flex justify-content-center align-items-center">{box({ width: i.width, url: i.url, size: i.size })}</Col>)}
-              
+              {smallPic.map((i) => (
+                <Col className="d-flex justify-content-center align-items-center">
+                  {box({ width: i.width, url: i.url, size: i.size })}
+                </Col>
+              ))}
             </S.Frow>
             <S.Frow>
-              <Col style={{ marginTop: "1rem" }}>
+              <Col className="mt-3">
                 <S.bbox>
-                  <S.h>Dresses</S.h>
-                  <S.pp>25 items $3.5k earned</S.pp>
+                  <S.h>{BottomData.box.title}</S.h>
+                  <S.pp>{BottomData.box.subtitle}</S.pp>
                 </S.bbox>
               </Col>
             </S.Frow>

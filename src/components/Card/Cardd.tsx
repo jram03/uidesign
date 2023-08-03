@@ -6,15 +6,17 @@ import CountUp from "react-countup";
 interface CardProps {
   count: number;
   option: string;
+  slide: string;
 }
 interface CarddataProps {
   id: number;
   count: number;
   option: string;
+  slide: string;
 }
 
-export const Cardd = ({Carddata}: {Carddata : CarddataProps[]} ) => {
-  const Card = ({ count, option }: CardProps) => {
+export const Cardd = ({ Carddata }: { Carddata: CarddataProps[] }) => {
+  const Card = ({ count, option, slide }: CardProps) => {
     return (
       <>
         <S.StyledCard>
@@ -28,7 +30,9 @@ export const Cardd = ({Carddata}: {Carddata : CarddataProps[]} ) => {
             />
           </strong>
           <div className="card__body">{option}</div>
-          <span>View {option}</span>
+          <span>
+            {slide} {option}
+          </span>
         </S.StyledCard>
       </>
     );
@@ -36,7 +40,9 @@ export const Cardd = ({Carddata}: {Carddata : CarddataProps[]} ) => {
   return (
     <>
       <S.Carddiv className="d-flex flex-wrap justify-content-evenly">
-        {Carddata.map((i : CarddataProps) => Card({ count: i.count, option: i.option }))}
+        {Carddata.map((i: CarddataProps) =>
+          Card({ count: i.count, option: i.option, slide: i.slide })
+        )}
       </S.Carddiv>
     </>
   );

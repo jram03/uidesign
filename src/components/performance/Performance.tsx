@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./styles";
 import { Col, Image, Row, Stack } from "react-bootstrap";
-import { PerData, FacesData } from "./../../pages/Config";
+import { PerData } from "./../../pages/Config";
 
 interface ProgressProps {
   title: string;
@@ -22,13 +22,37 @@ interface PerdataProps {
   growth: boolean;
   gvalue: string;
 }
-
+interface PerformanceDataProps {
+  title: string;
+  clientsection: {
+    title: string;
+    right: string;
+    size: string;
+  };
+  progressection: {
+    title: string;
+    icon: {
+      src: string;
+      height: number;
+      width: number;
+    };
+    bagicon: {
+      src: string;
+      height: number;
+      width: number;
+    };
+  };
+}
 export function Performance({
+  alternate,
   FacesData,
   Perdata,
+  PerformanceData,
 }: {
+  alternate: string;
   FacesData: FaceColprops[];
   Perdata: PerdataProps[];
+  PerformanceData: PerformanceDataProps;
 }) {
   const faceCol = ({ image, name }: FaceColprops) => {
     return (
@@ -36,7 +60,13 @@ export function Performance({
         <Col>
           <Stack direction="vertical">
             <div className="d-flex justify-content-center">
-              <Image height="30rem" width="30rem" src={image} roundedCircle />
+              <Image
+                alt={alternate}
+                height={PerformanceData.clientsection.size}
+                width={PerformanceData.clientsection.size}
+                src={image}
+                roundedCircle
+              />
             </div>
             <S.Textxsm style={{ textAlign: "center" }}>{name}</S.Textxsm>
           </Stack>
@@ -53,10 +83,10 @@ export function Performance({
       <>
         <S.SpaceRow>
           <Col>
-            <S.Textsm>New Clients(21)</S.Textsm>
+            <S.Textsm>{PerformanceData.clientsection.title}</S.Textsm>
           </Col>
           <Col className="col-auto">
-            <S.Textxsm>see all</S.Textxsm>
+            <S.Textxsm>{PerformanceData.clientsection.right}</S.Textxsm>
           </Col>
         </S.SpaceRow>
         <S.SpaceRow>{faces()}</S.SpaceRow>
@@ -75,20 +105,22 @@ export function Performance({
           <Col className="p-2">
             <S.Textsm>
               <img
-                src="https://img.icons8.com/ios/50/shopping-bag--v1.png"
-                height={15}
-                width={15}
+                alt={alternate}
+                src={PerformanceData.progressection.bagicon.src}
+                height={PerformanceData.progressection.bagicon.height}
+                width={PerformanceData.progressection.bagicon.width}
               />
-              &nbsp;{props.orders} orders
+              &nbsp;{props.orders}
             </S.Textsm>
           </Col>
           <Col className="col-4">
             <S.Box c={c} bg={bg}>
               <S.Textxsm>
                 <img
-                  src="https://img.icons8.com/pastel-glyph/64/sales-growth.png"
-                  height={15}
-                  width={15}
+                  alt={alternate}
+                  src={PerformanceData.progressection.icon.src}
+                  height={PerformanceData.progressection.icon.height}
+                  width={PerformanceData.progressection.icon.width}
                 />
                 &nbsp;&nbsp;{props.gvalue}
               </S.Textxsm>
@@ -108,7 +140,7 @@ export function Performance({
               <S.Textsm>{props.title}</S.Textsm>
             </Col>
             <Col className="col-auto">
-              <S.Textxsmbold>$ {props.revenue}</S.Textxsmbold>
+              <S.Textxsmbold>{props.revenue}</S.Textxsmbold>
             </Col>
           </Row>
           <Row>
@@ -127,9 +159,9 @@ export function Performance({
   return (
     <>
       <S.Container lg={3} md={4} sm={11}>
-        <S.Text>Performance</S.Text>
+        <S.Text>{PerformanceData.title}</S.Text>
         {NewClients()}
-        <S.Textsm>Your Progress</S.Textsm>
+        <S.Textsm>{PerformanceData.progressection.title}</S.Textsm>
         <S.ProgressContainer>
           {PerData.map((i) => Progress(i))}
         </S.ProgressContainer>

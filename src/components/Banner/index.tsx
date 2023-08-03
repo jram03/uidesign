@@ -2,27 +2,41 @@ import React from "react";
 import * as S from "./styles";
 import { Col, Row } from "react-bootstrap";
 import carticon from "./../../icons/carticon.png";
-export const Banner = () => {
+interface BannerProps {
+  title: string;
+  subtitle: string;
+  image: {
+    url: string;
+    height: string;
+    width: string;
+  };
+}
+export const Banner = ({
+  alternate,
+  BannerData,
+}: {
+  alternate: string;
+  BannerData: BannerProps;
+}) => {
+  console.log("image is : ", carticon);
   return (
     <>
       <S.Container className="h2">
         <Row>
           <Col className="col-8 p-2">
-            <S.h>Good Job!</S.h>
-            <S.pp>
-              You have over 20 000 visitors in the last 10 days. Keep it up
-            </S.pp>
+            <S.h>{BannerData.title}</S.h>
+            <S.pp>{BannerData.subtitle}</S.pp>
           </Col>
           <S.Ccol>
             <S.Img
-              src={carticon}
-              height="150%"
-              width="90%"
-              z-index="2"
+              alt={alternate}
+              src={BannerData.image.url}
+              height={BannerData.image.height}
+              width={BannerData.image.width}
             />
           </S.Ccol>
         </Row>
       </S.Container>
     </>
   );
-}
+};

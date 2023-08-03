@@ -2,14 +2,17 @@ import React from "react";
 import * as S from "./styles";
 import { Row, Col } from "react-bootstrap";
 import { BellIcon } from "@heroicons/react/24/outline";
- 
-export function Header() {
+ interface HeaderProps {
+  title : string,
+  subtitle : string
+ }
+export function Header({HeaderData}:{HeaderData:HeaderProps}) {
   return (
     <div className="b1">
       <Row>
         <Col className="col-9">
-          <S.HText>Welcome back, Dan!</S.HText>
-          <S.PText>23 Oktober, Friday</S.PText>
+          <S.HText>{HeaderData.title}</S.HText>
+          <S.PText>{HeaderData.subtitle}</S.PText>
         </Col>
         <Col className="col-auto"></Col>
         <Col className="col-auto">
