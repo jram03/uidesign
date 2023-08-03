@@ -8,7 +8,11 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { Button, Col, Row, Stack } from "react-bootstrap";
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import closeicon from './../../icons/close.png'
-export function Navv(){
+interface NavProps{
+    id : number,
+    name : string,
+}
+export const Navv=({data} : {data : NavProps[]})=>{
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -33,25 +37,20 @@ export function Navv(){
     }
     const MidContent =() =>{
         return <>
-        <S.CCol className="mt-4">{section("Dashboard")}</S.CCol>
-        <S.CCol className="mt-4">{section("Products")}</S.CCol>
-        <S.CCol className="mt-4">{section("Customers")}</S.CCol>
-        <S.CCol className="mt-4">{section("Reviews")}</S.CCol>
-        <S.CCol className="mt-4">{section("Settings")}</S.CCol> 
+        {data.map(({id,name} : NavProps)=><S.CCol className="mt-4">{section(name)}</S.CCol>)}
+
         </>
     }
     const TotalContent = () =>{
         return <>
         <S.ImgContainer>
         <S.IImage src="https://t4.ftcdn.net/jpg/03/26/98/51/360_F_326985142_1aaKcEjMQW6ULp6oI9MYuv8lN9f8sFmj.jpg" height={90} width={90} roundedCircle />
-
         </S.ImgContainer>
         <S.MidContainer>
         {MidContent()} 
         </S.MidContainer>
         <S.Footer>
         <S.CCol>{section("Logout")}</S.CCol>
-
         </S.Footer>
         </>
     }

@@ -10,15 +10,18 @@ export const Container = styled.div`
     padding-left : 10%;
     transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
 
-    @media screen and (max-width : 420px){
-        width : 85%;
-    }
+    
     
     &:hover{
         cursor : pointer;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
     
+`
+
+export const Img = styled.img`
+position: absolute;
+bottom: 0.03rem;
 `
 export const h =styled.h1`
     font-size : 1.5rem
