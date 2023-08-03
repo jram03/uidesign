@@ -1,32 +1,35 @@
 import React from "react";
 import * as S from "./styles";
-import { Col, Row, Stack } from "react-bootstrap";
-import styled from "styled-components";
-import CountUp from "react-countup";
 interface CardProps {
   count: number;
   option: string;
   slide: string;
 }
-interface CarddataProps {
+interface CardDataProps {
   id: number;
   count: number;
   option: string;
   slide: string;
 }
+interface CountupDataProps {
+  prefix: string;
+  suffix: string;
+  start: number;
+  duration: number;
+}
 
-export const Cardd = ({ Carddata }: { Carddata: CarddataProps[] }) => {
+export const CardContainer = ({ CardData,CountupData }: { CardData: CardDataProps[]; CountupData : CountupDataProps }) => {
   const Card = ({ count, option, slide }: CardProps) => {
     return (
       <>
         <S.StyledCard>
           <strong>
             <S.StyledCount
-              prefix="+"
-              suffix="K"
-              start={0}
+              prefix={CountupData.prefix}
+              suffix={CountupData.suffix}
+              start={CountupData.start}
               end={count}
-              duration={5}
+              duration={CountupData.duration}
             />
           </strong>
           <div className="card__body">{option}</div>
@@ -40,7 +43,7 @@ export const Cardd = ({ Carddata }: { Carddata: CarddataProps[] }) => {
   return (
     <>
       <S.Carddiv className="d-flex flex-wrap justify-content-evenly">
-        {Carddata.map((i: CarddataProps) =>
+        {CardData.map((i: CardDataProps) =>
           Card({ count: i.count, option: i.option, slide: i.slide })
         )}
       </S.Carddiv>

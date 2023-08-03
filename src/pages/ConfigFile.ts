@@ -1,4 +1,4 @@
-export const PerData = [
+export const ProgressData = [
   {
     title: "Total Income",
     revenue: "$ 1,4K",
@@ -34,7 +34,7 @@ export const Navdata = {
     name: "Logout",
   },
 };
-export const FacesData = [
+export const FaceData = [
   {
     image:
       "https://wellgroomedgentleman.com/media/images/Tony_Stark_Beard_with_Quiff_Hairstyle.width-800.jpg",
@@ -56,8 +56,13 @@ export const FacesData = [
     name: "Tony",
   },
 ];
-
-export const Carddata = [
+export const CountupData = {
+  prefix : "+" ,
+  suffix : "K" ,
+  start : 0 , 
+  duration : 5
+}
+export const CardData = [
   {
     id: 1,
     count: 690,
@@ -78,7 +83,7 @@ export const Carddata = [
   },
 ];
 
-export const BottomBigPic = [
+export const LImgContainer = [
   {
     id: 1,
     width: "100%",
@@ -87,7 +92,7 @@ export const BottomBigPic = [
   },
 ];
 
-export const smallPic = [
+export const SImgContainer = [
   {
     id: 2,
     width: "100%",

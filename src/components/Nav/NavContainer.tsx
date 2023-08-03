@@ -9,7 +9,6 @@ import { Bars3Icon } from "@heroicons/react/24/outline";
 import ReviewsOutlinedIcon from "@mui/icons-material/ReviewsOutlined";
 import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { Button, Col, Row, Stack } from "react-bootstrap";
 import Offcanvas from "react-bootstrap/Offcanvas";
 interface NavProps {
   id: number;
@@ -27,7 +26,7 @@ interface NavdataProps {
     name: string;
   };
 }
-export const Navv = ({
+export const Nav = ({
   alternate,
   data,
   Navdata,
@@ -38,11 +37,9 @@ export const Navv = ({
 }) => {
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const _handleClose = () => setShow(false);
 
-  const [flg, setFlg] = useState(1);
-  const section = (name: string) => {
+  const _section = (name: string) => {
     return (
       <S.hover className="d-flex">
         <div className="me-2">
@@ -59,16 +56,16 @@ export const Navv = ({
       </S.hover>
     );
   };
-  const MidContent = () => {
+  const _midContent = () => {
     return (
       <>
         {data.map(({ id, name }: NavProps) => (
-          <S.CCol className="mt-4">{section(name)}</S.CCol>
+          <S.CCol className="mt-4">{_section(name)}</S.CCol>
         ))}
       </>
     );
   };
-  const TotalContent = () => {
+  const _totalContent = () => {
     return (
       <>
         <S.ImgContainer>
@@ -80,22 +77,22 @@ export const Navv = ({
             roundedCircle
           />
         </S.ImgContainer>
-        <S.MidContainer>{MidContent()}</S.MidContainer>
+        <S.MidContainer>{_midContent()}</S.MidContainer>
         <S.Footer>
-          <S.CCol>{section(Navdata.footer.name)}</S.CCol>
+          <S.CCol>{_section(Navdata.footer.name)}</S.CCol>
         </S.Footer>
       </>
     );
   };
-  const clickHandler = () => {
+  const _clickHandler = () => {
     setShow(true);
   };
   return (
     <>
-      <S.Containerside show={show} onHide={handleClose}>
+      <S.Containerside show={show} onHide={_handleClose}>
         <Offcanvas.Header>
           <Offcanvas.Title></Offcanvas.Title>
-          <S.Buttonclose onClick={handleClose}>
+          <S.Buttonclose onClick={_handleClose}>
             <img
               alt={alternate}
               src={Navdata.closeicon}
@@ -105,18 +102,18 @@ export const Navv = ({
           </S.Buttonclose>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <S.Containerdiv>{TotalContent()}</S.Containerdiv>
+          <S.Containerdiv>{_totalContent()}</S.Containerdiv>
         </Offcanvas.Body>
       </S.Containerside>
       <S.Containersm>
-        <S.Bbutton onClick={() => clickHandler()}>
+        <S.Bbutton onClick={() => _clickHandler()}>
           <Bars3Icon
             height={Navdata.closeiconsize}
             width={Navdata.closeiconsize}
           />
         </S.Bbutton>
       </S.Containersm>
-      <S.Container>{TotalContent()}</S.Container>
+      <S.Container>{_totalContent()}</S.Container>
     </>
   );
 };

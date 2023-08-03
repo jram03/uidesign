@@ -1,8 +1,7 @@
 import React from "react";
 import { Boxx } from "./styles";
 import * as S from "./styles";
-import { Col, Stack } from "react-bootstrap";
-import spec from "./../../icons/glass.png";
+import { Col } from "react-bootstrap";
 interface BottomProps {
   width: string;
   url: string;
@@ -15,13 +14,13 @@ interface BottomDataProps {
     subtitle: string;
   };
 }
-interface BottomBigPicProps {
+interface LImgContainerProps {
   id: number;
   width: string;
   url: string;
   size: string;
 }
-interface smallPicProps {
+interface SImgContainerProps {
   id: number;
   width: string;
   url: string;
@@ -29,13 +28,13 @@ interface smallPicProps {
 }
 export const Bottom = ({
   alternate,
-  BottomBigPic,
-  smallPic,
+  LImgContainer,
+  SImgContainer,
   BottomData,
 }: {
   alternate: string;
-  BottomBigPic: BottomBigPicProps[];
-  smallPic: smallPicProps[];
+  LImgContainer: LImgContainerProps[];
+  SImgContainer: SImgContainerProps[];
   BottomData: BottomDataProps;
 }) => {
   const box = ({ width, url, size }: BottomProps) => {
@@ -51,13 +50,13 @@ export const Bottom = ({
       <S.recentText>{BottomData.title}</S.recentText>
       <div style={{ padding: "0.5rem" }}>
         <S.Rrow>
-          {BottomBigPic.map((i) => (
+          {LImgContainer.map((i) => (
             <S.RCol>{box({ width: i.width, url: i.url, size: i.size })}</S.RCol>
           ))}
 
           <S.RCol>
             <S.Frow>
-              {smallPic.map((i) => (
+              {SImgContainer.map((i) => (
                 <Col className="d-flex justify-content-center align-items-center">
                   {box({ width: i.width, url: i.url, size: i.size })}
                 </Col>

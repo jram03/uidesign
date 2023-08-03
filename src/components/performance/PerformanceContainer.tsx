@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./styles";
 import { Col, Image, Row, Stack } from "react-bootstrap";
-import { PerData } from "./../../pages/Config";
+import { ProgressData } from "../../pages/ConfigFile";
 
 interface ProgressProps {
   title: string;
@@ -15,7 +15,7 @@ interface FaceColprops {
   name: string;
 }
 
-interface PerdataProps {
+interface ProgressdataProps {
   title: string;
   revenue: string;
   orders: string;
@@ -45,13 +45,13 @@ interface PerformanceDataProps {
 }
 export function Performance({
   alternate,
-  FacesData,
-  Perdata,
+  FaceData,
+  Progressdata,
   PerformanceData,
 }: {
   alternate: string;
-  FacesData: FaceColprops[];
-  Perdata: PerdataProps[];
+  FaceData: FaceColprops[];
+  Progressdata: ProgressdataProps[];
   PerformanceData: PerformanceDataProps;
 }) {
   const faceCol = ({ image, name }: FaceColprops) => {
@@ -76,7 +76,7 @@ export function Performance({
   };
 
   const faces = () => {
-    return <>{FacesData.map((i) => faceCol(i))}</>;
+    return <>{FaceData.map((i) => faceCol(i))}</>;
   };
   const NewClients = () => {
     return (
@@ -163,7 +163,7 @@ export function Performance({
         {NewClients()}
         <S.Textsm>{PerformanceData.progressection.title}</S.Textsm>
         <S.ProgressContainer>
-          {PerData.map((i) => Progress(i))}
+          {ProgressData.map((i) => Progress(i))}
         </S.ProgressContainer>
       </S.Container>
     </>

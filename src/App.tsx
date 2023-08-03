@@ -1,10 +1,11 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Container } from './components/container/Container.com';
+import React from "react";
+import "./App.css";
+import { Container } from "./components/container/CommonContainer";
 function App() {
   return (
-    <><Container /></>
+    <>
+      <Container />
+    </>
   );
 }
 

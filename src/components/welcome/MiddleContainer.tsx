@@ -1,30 +1,37 @@
 import React from "react";
 import * as S from "./styles";
-import { Header } from "../Header/Header";
-import { Banner } from "../Banner";
-import { Cardd } from "../Card/Cardd";
-import { Bottom } from "../Bottom/Bottom";
+import { Header } from "../Header/HeaderContainer";
+import { Banner } from "../Banner/BannerContainer";
+import { CardContainer } from "../Card/CardContainer";
+import { Bottom } from "../Bottom/BottomContainer";
 interface WelcomeProps {
   alternate: string;
-  Carddata: CarddataProps[];
-  BottomBigPic: BottomBigPicProps[];
-  smallPic: smallPicProps[];
+  CardData: CardDataProps[];
+  LImgContainer: LImgContainerProps[];
+  SImgContainer: SImgContainerProps[];
   WelcomeData: welcomeDataProps;
+  CountupData: CountupDataProps;
 }
 
-interface CarddataProps {
+interface CardDataProps {
   id: number;
   count: number;
   option: string;
   slide: string;
 }
-interface BottomBigPicProps {
+interface CountupDataProps {
+  prefix: string;
+  suffix: string;
+  start: number;
+  duration: number;
+}
+interface LImgContainerProps {
   id: number;
   width: string;
   url: string;
   size: string;
 }
-interface smallPicProps {
+interface SImgContainerProps {
   id: number;
   width: string;
   url: string;
@@ -54,21 +61,22 @@ interface welcomeDataProps {
 }
 export function Welcome({
   alternate,
-  Carddata,
-  BottomBigPic,
-  smallPic,
+  CardData,
+  LImgContainer,
+  SImgContainer,
   WelcomeData,
+  CountupData,
 }: WelcomeProps) {
   return (
     <>
       <S.Container lg={6} md={7} sm={11}>
         <Header HeaderData={WelcomeData.header} />
         <Banner alternate={alternate} BannerData={WelcomeData.banner} />
-        <Cardd Carddata={Carddata} />
+        <CardContainer CardData={CardData} CountupData={CountupData} />
         <Bottom
           alternate={alternate}
-          BottomBigPic={BottomBigPic}
-          smallPic={smallPic}
+          LImgContainer={LImgContainer}
+          SImgContainer={SImgContainer}
           BottomData={WelcomeData.bottom}
         />
       </S.Container>
